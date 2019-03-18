@@ -8,8 +8,8 @@ import resources
 
 
 class Doc:
-    def __init__(self, icon_path, table, method_name):
-        self.icon = icon_path
+    def __init__(self, image, table, method_name):
+        self.image_stream = image
         self.data = table
         self.method = method_name
 
@@ -30,7 +30,7 @@ class Doc:
 
         self.document.add_heading(self.method, 0)
         self.document.add_heading('Рисунок', level=1)
-        self.document.add_picture(self.icon, width=Inches(6))
+        self.document.add_picture(self.image_stream, width=Inches(6))
 
         self.document.add_page_break()
         self.document.add_heading('Таблица', level=1)

@@ -1,4 +1,5 @@
 import os
+from io import BytesIO
 
 import numpy as np
 import sys
@@ -105,11 +106,6 @@ class ExampleApp(QtWidgets.QMainWindow, mainwindow.Ui_MainWindow):
             return self.methods.davidon_fletcher_powell()
 
     def plot(self, res):
-
-        # X = np.arange(-15, 15, 0.025)
-        # Y = np.arange(-15, 25, 0.025)
-        # levels = np.arange(0.1, 80, 0.5)
-
         X = np.arange(-5, 10, 0.025)
         Y = np.arange(-5, 20, 0.025)
         levels = np.arange(0.1, 20, 1)
@@ -121,7 +117,6 @@ class ExampleApp(QtWidgets.QMainWindow, mainwindow.Ui_MainWindow):
 
         self.figure.clear()
         ax = self.figure.add_subplot(111)
-
 
         ax.set_xlim([-2, 4])
         ax.set_ylim([-2, 8])
@@ -143,9 +138,14 @@ class ExampleApp(QtWidgets.QMainWindow, mainwindow.Ui_MainWindow):
     def save_report(self):
         if self.res:
             self.figure.savefig('img.png')
+            with open('img.png', 'rb') as f:
+                image = BytesIO(f.read())
+            os.remove('img.png')
+
             method_name = self.parse_method_name(self.ComboBoxMethodName.currentIndex())
 
-            d = Doc('img.png', self.res, method_name)
+            d = Doc(image, self.res, method_name)
+
             from datetime import datetime
             time = datetime.now().strftime('%d_%m_%Y_%H_%M_%S')
             output_file = QFileDialog.getSaveFileName(self, "Save as doc", f"{method_name}_{time}.docx",
@@ -155,7 +155,7 @@ class ExampleApp(QtWidgets.QMainWindow, mainwindow.Ui_MainWindow):
                 return
 
             d.save(output_file[0])
-            os.remove('img.png')
+
         else:
             self.create_error_msg('Таблица пуста. Выберите метод и рассчитайте приближение.')
 
