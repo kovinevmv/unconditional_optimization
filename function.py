@@ -1,7 +1,5 @@
 import numpy as np
-
-from point import Point
-
+from myPoint import Point
 
 class Function:
     def __init__(self):
@@ -12,21 +10,21 @@ class Function:
 
     def f(self, x, y=None):
         if y is None:
-            return np.power((x.y - np.power(x.x, 2)), 2) + self.alpha * np.power((x.x - 1), 2)
+            return np.power((x.y() - np.power(x.x(), 2)), 2) + self.alpha * np.power((x.x() - 1), 2)
         else:
             return np.power((y - np.power(x, 2)), 2) + self.alpha * np.power((x - 1), 2)
 
     def _dx(self, p):
-        return 4 * p.x * (np.power(p.x, 2) - p.y) + 2 * self.alpha * (p.x - 1)
+        return 4 * p.x() * (np.power(p.x(), 2) - p.y()) + 2 * self.alpha * (p.x() - 1)
 
     def _dy(self, p):
-        return 2 * (p.y - np.power(p.x, 2))
+        return 2 * (p.y() - np.power(p.x(), 2))
 
     def _dxdx(self, p):
-        return 12 * np.power(p.x, 2) - 4 * p.y + 2 * self.alpha
+        return 12 * np.power(p.x(), 2) - 4 * p.y() + 2 * self.alpha
 
     def _dxdy(self, p):
-        return -4 * p.x
+        return -4 * p.x()
 
     def _dydy(self, p):
         return 2

@@ -1,9 +1,9 @@
-import numpy as np
-from scipy.optimize import minimize
 from functools import partial
-from point import Point
-from numpy.linalg import inv
 
+import numpy as np
+from numpy.linalg import inv
+from scipy.optimize import minimize
+from myPoint import Point
 
 class Methods:
     def __init__(self, f_):
@@ -33,8 +33,8 @@ class Methods:
     def gradient_descent_const_step(self):
         current_point = self.start
         res = [{
-            'x': current_point.x,
-            'y': current_point.y,
+            'x': current_point.x(),
+            'y': current_point.y(),
             'f(x,y)': self.function.f(current_point),
             'Кол-во выч. f': 1
         }]
@@ -45,8 +45,8 @@ class Methods:
             value = self.function.f(current_point)
             if abs(value) < 1.7976931348623157e+150:
                 res.append({
-                    'x': current_point.x,
-                    'y': current_point.y,
+                    'x': current_point.x(),
+                    'y': current_point.y(),
                     'f(x,y)': value,
                     'Кол-во выч. f': 1
                 })
@@ -57,8 +57,8 @@ class Methods:
     def gradient_descent_split_step(self):
         current_point = self.start
         res = [{
-            'x': current_point.x,
-            'y': current_point.y,
+            'x': current_point.x(),
+            'y': current_point.y(),
             'f(x,y)': self.function.f(current_point),
             'Кол-во выч. f': 1,
             'Размер шага': self.step_len
@@ -85,8 +85,8 @@ class Methods:
 
             current_point = next
             res.append({
-                'x': current_point.x,
-                'y': current_point.y,
+                'x': current_point.x(),
+                'y': current_point.y(),
                 'f(x,y)': f_next,
                 'Кол-во выч. f': f_calls,
                 'Размер шага': step
@@ -100,8 +100,8 @@ class Methods:
         current_point = self.start
 
         res = [{
-            'x': current_point.x,
-            'y': current_point.y,
+            'x': current_point.x(),
+            'y': current_point.y(),
             'f(x,y)': self.function.f(current_point),
             'Кол-во выч. f': 1
         }]
@@ -117,8 +117,8 @@ class Methods:
 
             value = self.function.f(current_point)
             res.append({
-                'x': current_point.x,
-                'y': current_point.y,
+                'x': current_point.x(),
+                'y': current_point.y(),
                 'f(x,y)': value,
                 'Кол-во выч. f': f_calls
             })
@@ -130,8 +130,8 @@ class Methods:
         current_point = self.start
 
         res = [{
-            'x': current_point.x,
-            'y': current_point.y,
+            'x': current_point.x(),
+            'y': current_point.y(),
             'f(x,y)': self.function.f(current_point),
             'Кол-во выч. f': 1
         }]
@@ -147,8 +147,8 @@ class Methods:
             value = self.function.f(current_point)
 
             res.append({
-                'x': current_point.x,
-                'y': current_point.y,
+                'x': current_point.x(),
+                'y': current_point.y(),
                 'f(x,y)': value,
                 'Кол-во выч. f': 1
             })
@@ -161,8 +161,8 @@ class Methods:
         current_point = self.start
 
         res = [{
-            'x': current_point.x,
-            'y': current_point.y,
+            'x': current_point.x(),
+            'y': current_point.y(),
             'f(x,y)': self.function.f(current_point),
             'Кол-во выч. f': 1
         }]
@@ -190,8 +190,8 @@ class Methods:
 
             value = self.function.f(next)
             res.append({
-                'x': current_point.x,
-                'y': current_point.y,
+                'x': current_point.x(),
+                'y': current_point.y(),
                 'f(x,y)': value,
                 'Кол-во выч. f': r.nit
             })

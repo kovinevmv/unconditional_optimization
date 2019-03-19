@@ -10,9 +10,9 @@ import mainwindow
 
 from methods import Methods
 from function import Function
-from point import Point
 from informationdialog import InformationDialog
 from save import Doc
+from myPoint import Point
 
 import resources
 
