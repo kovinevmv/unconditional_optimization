@@ -3,7 +3,7 @@ from functools import partial
 import numpy as np
 from numpy.linalg import inv
 from scipy.optimize import minimize
-from myPoint import Point
+from util.myPoint import Point
 
 class Methods:
     def __init__(self, f_):

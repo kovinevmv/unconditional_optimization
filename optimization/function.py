@@ -1,5 +1,5 @@
 import numpy as np
-from myPoint import Point
+from util.myPoint import Point
 
 class Function:
     def __init__(self):

@@ -1,7 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QUrl
 from PyQt5.QtWidgets import QWidget, QPushButton, QTextBrowser
-import resources
+import util.resources
 
 class InformationDialog(QWidget):
     def __init__(self, path, strFileName, widget):

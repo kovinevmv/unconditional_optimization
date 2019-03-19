@@ -4,7 +4,7 @@ from PyQt5 import QtCore
 from docx import Document
 from docx.shared import Inches
 
-import resources
+import util.resources
 
 
 class Doc:

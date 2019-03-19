@@ -8,13 +8,13 @@ from PyQt5.QtGui import QStandardItemModel, QStandardItem, QPixmap, QPalette
 from PyQt5.QtWidgets import QHeaderView, QFileDialog, QMessageBox, QDialog, QLabel
 import mainwindow
 
-from methods import Methods
-from function import Function
+from optimization.methods import Methods
+from optimization.function import Function
 from informationdialog import InformationDialog
-from save import Doc
-from myPoint import Point
+from util.save import Doc
+from util.myPoint import Point
 
-import resources
+import util.resources
 
 
 class ExampleApp(QtWidgets.QMainWindow, mainwindow.Ui_MainWindow):
@@ -122,6 +122,7 @@ class ExampleApp(QtWidgets.QMainWindow, mainwindow.Ui_MainWindow):
         ax.set_ylim([-2, 8])
         ax.plot(x, y, marker='o', lw=1, color='r')
         ax.contour(X, Y, Z, levels=levels)
+        ax.scatter(1, 1, s=10, color='#9900cc')
         self.canvas.draw()
 
     def parse_method_name(self, index):
