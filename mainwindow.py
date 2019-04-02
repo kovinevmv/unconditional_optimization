@@ -114,6 +114,7 @@ class Ui_MainWindow(object):
         self.ComboBoxMethodName.addItem("")
         self.ComboBoxMethodName.addItem("")
         self.ComboBoxMethodName.addItem("")
+        self.ComboBoxMethodName.addItem("")
         self.verticalLayout_4.addWidget(self.ComboBoxMethodName)
         self.verticalLayout.addLayout(self.verticalLayout_4)
         spacerItem = QtWidgets.QSpacerItem(10, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
@@ -195,6 +196,7 @@ class Ui_MainWindow(object):
         self.ComboBoxMethodName.setItemText(2, _translate("MainWindow", "Наискорейшего спуска"))
         self.ComboBoxMethodName.setItemText(3, _translate("MainWindow", "Ньютона-Рафсона"))
         self.ComboBoxMethodName.setItemText(4, _translate("MainWindow", "Полака-Рибьера"))
+        self.ComboBoxMethodName.setItemText(5, _translate("MainWindow", "ДФП"))
         self.ButtonCalculate.setText(_translate("MainWindow", "Рассчет"))
 
         self.menu.setTitle(_translate("MainWindow", "Файл"))

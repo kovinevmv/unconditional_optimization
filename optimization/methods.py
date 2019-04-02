@@ -3,7 +3,10 @@ from functools import partial
 import numpy as np
 from numpy.linalg import inv
 from scipy.optimize import minimize
+
+from optimization.function import Function
 from util.myPoint import Point
+
 
 class Methods:
     def __init__(self, f_):
@@ -197,6 +200,64 @@ class Methods:
             })
             if abs(value) > 1.7976931348623157e+150 or abs(value - res[-2]['f(x,y)']) <= 1e-32:
                 break
+        return res
+
+    def davidon(self):
+        current_point = self.start
+
+        res = [{
+            'x': current_point.x(),
+            'y': current_point.y(),
+            'f(x,y)': self.function.f(current_point),
+            'Кол-во выч. f': 1
+        }]
+
+        old_x = current_point
+        eta = np.matrix([[1.0, 0.0], [0.0, 1.0]])
+        grad = self.function.grad(current_point).to_matrix()
+        old_grad = grad
+
+        for i in range(self.step_count):
+            d = (eta @ grad) * -1
+            d = Point(d.item(0), d.item(1))
+
+            optfunc = partial(self.min_polak, current_point, d)
+            r = minimize(optfunc, 5, method='Nelder-Mead', options={'xtol': 1e-10})
+
+            current_point = current_point + r.x[0] * d
+
+            grad = self.function.grad(current_point).to_matrix()
+
+            delta_x = (current_point - old_x).to_matrix()
+            delta_g = grad - old_grad
+
+            a = np.outer(delta_x, delta_x) / np.inner(delta_x, delta_g)
+
+            p1 = eta @ delta_g
+            p2 = np.outer(p1, delta_g)
+            p3 = p2 @ eta.transpose()
+            p4 = np.matrix([[1.0, 0.0], [0.0, 1.0]]) @ delta_g
+            p5 = eta @ p4
+            p6 = np.inner(p5, delta_g)
+            b = p3 / p6
+
+            eta += a - b
+
+            old_x = current_point
+            old_grad = grad
+
+            value = self.function.f(current_point)
+
+            res.append({
+                'x': current_point.x(),
+                'y': current_point.y(),
+                'f(x,y)': value,
+                'Кол-во выч. f': 1
+            })
+
+            if abs(value) > 1.7976931348623157e+150 or abs(value - res[-2]['f(x,y)']) <= 1e-15:
+                break
+
         return res
 
 

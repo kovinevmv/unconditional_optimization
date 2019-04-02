@@ -15,6 +15,9 @@ class Point(QPointF):
     def __mul__(self, other):
         return Point(self.x() * other, self.y() * other)
 
+    def __div__(self, other):
+        return Point(self.x() / other, self.y() / other)
+
     def __pow__(self, other):
         return Point(self.x() ** other, self.y() ** other)
 
@@ -25,7 +28,7 @@ class Point(QPointF):
         return (self.x() ** 2 + self.y() ** 2) ** 0.5
 
     def to_matrix(self):
-        return np.array([[self.x()], [self.y()]])
+        return np.matrix([[self.x()], [self.y()]])
 
     def to_array(self):
         return np.array([self.x(), self.y()])

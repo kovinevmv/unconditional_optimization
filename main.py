@@ -103,7 +103,7 @@ class ExampleApp(QtWidgets.QMainWindow, mainwindow.Ui_MainWindow):
         if index == 4:
             return self.methods.polak_ribiere()
         if index == 5:
-            return self.methods.davidon_fletcher_powell()
+            return self.methods.davidon()
 
     def plot(self, res):
         X = np.arange(-5, 10, 0.025)
