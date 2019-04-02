@@ -231,7 +231,7 @@ class Methods:
             delta_x = (current_point - old_x).to_matrix()
             delta_g = grad - old_grad
 
-            a = np.outer(delta_x, delta_x) / np.inner(delta_x, delta_g)
+            a = np.outer(delta_x, delta_x.transpose()) / np.inner(delta_x, delta_g)
 
             p1 = eta @ delta_g
             p2 = np.outer(p1, delta_g)
@@ -239,7 +239,7 @@ class Methods:
             p4 = np.matrix([[1.0, 0.0], [0.0, 1.0]]) @ delta_g
             p5 = eta @ p4
             p6 = np.inner(p5, delta_g)
-            b = p3 / p6
+            b = p6 / p3
 
             eta += a - b
 
