@@ -222,7 +222,7 @@ class Methods:
             d = Point(d.item(0), d.item(1))
 
             optfunc = partial(self.min_polak, current_point, d)
-            r = minimize(optfunc, 5, method='Nelder-Mead', options={'xtol': 1e-10})
+            r = minimize(optfunc, 5, method='Nelder-Mead', options={'xtol': 1e-6})
 
             current_point = current_point + r.x[0] * d
 
@@ -233,13 +233,8 @@ class Methods:
 
             a = np.outer(delta_x, delta_x.transpose()) / np.inner(delta_x, delta_g)
 
-            p1 = eta @ delta_g
-            p2 = np.outer(p1, delta_g)
-            p3 = p2 @ eta.transpose()
-            p4 = np.matrix([[1.0, 0.0], [0.0, 1.0]]) @ delta_g
-            p5 = eta @ p4
-            p6 = np.inner(p5, delta_g)
-            b = p6 / p3
+            b = np.inner(eta @ np.matrix([[1.0, 0.0], [0.0, 1.0]]) @ delta_g, delta_g) /\
+                np.outer(eta @ delta_g, delta_g) @ eta.transpose()
 
             eta += a - b
 
@@ -252,7 +247,7 @@ class Methods:
                 'x': current_point.x(),
                 'y': current_point.y(),
                 'f(x,y)': value,
-                'Кол-во выч. f': 1
+                'Кол-во выч. f': r.nit
             })
 
             if abs(value) > 1.7976931348623157e+150 or abs(value - res[-2]['f(x,y)']) <= 1e-15:
