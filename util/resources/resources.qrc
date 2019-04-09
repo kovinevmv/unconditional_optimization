@@ -1,0 +1,20 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file>icons/me.jpg</file>
+    <file>icons/ico.png</file>
+    <file>help_docs/info_6.png</file>
+    <file>help_docs/info_5.png</file>
+	<file>help_docs/info_4.png</file>
+    <file>help_docs/info_2.png</file>
+    <file>help_docs/info_3.png</file>
+    <file>help_docs/info_1.png</file>
+	<file>help_docs/method6.html</file>
+    <file>help_docs/method5.html</file>
+    <file>help_docs/method4.html</file>
+    <file>help_docs/method3.html</file>
+    <file>help_docs/method2.html</file>
+    <file>help_docs/method1.html</file>
+    <file>help_docs/index.html</file>
+    <file>help_docs/default.docx</file>
+</qresource>
+</RCC>

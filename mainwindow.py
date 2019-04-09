@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 
-import util.resources
+import util.resources.resources
 
 
 class Ui_MainWindow(object):
@@ -98,7 +98,7 @@ class Ui_MainWindow(object):
         self.SpinBoxStepCount = QtWidgets.QSpinBox(self.centralWidget)
         self.SpinBoxStepCount.setProperty("value", 10)
         self.SpinBoxStepCount.setObjectName("SpinBoxStepCount")
-        self.SpinBoxStepCount.setMaximum(200.0)
+        self.SpinBoxStepCount.setMaximum(500.0)
         self.verticalLayout_9.addWidget(self.SpinBoxStepCount)
         self.verticalLayout.addLayout(self.verticalLayout_9)
         self.verticalLayout_4 = QtWidgets.QVBoxLayout()
