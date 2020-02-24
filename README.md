@@ -16,4 +16,6 @@
 Сборка под Windows: [скачать](https://github.com/kovinevmv/unconditional_optimization/releases/download/v1/lab_1_optimization.exe)
 
 
+# Пример
 
+![Sample](docs/sample.png)
